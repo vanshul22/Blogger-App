@@ -7,11 +7,13 @@ def bloghome(request):
     """
     docstring
     """
-    return HttpResponse("This is a blog home")
+    # return HttpResponse("This is a blog home")
+    return render(request, "blog/index.html")
 
 
 def blogpost(request, slug):
     """
     docstring
     """
-    return HttpResponse(f"This is blog post : {slug} ")
+    # return HttpResponse(f"This is blog post : {slug} ")
+    return render(request, "blog/blogpost.html", {"slug":slug})
