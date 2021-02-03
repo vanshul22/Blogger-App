@@ -45,6 +45,15 @@
             </div>
         </div>
     </nav>
+
+    <!-- Displaying Alert message by their tags -->
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
     {% block body %}
 
     {% endblock body %}
