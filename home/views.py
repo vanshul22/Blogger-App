@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from home.models import Contact
 # Importing django message module
 from django.contrib import messages
-
+# Taking all post from this Post 
+from blog.models import Post
 
 # Create your views here.
 
@@ -44,3 +45,13 @@ def contact(request):
 
     # return HttpResponse("This is contact of home")
     return render(request, "home/contact.html")
+
+def search(request):
+    """
+    
+    """
+    query = request.GET["query"]
+    allposts = Post.objects.filter(title__icontains=query)
+    params = {"allposts": allposts}
+    # return HttpResponse("This is search")
+    return render(request, "home/search.html", params)
