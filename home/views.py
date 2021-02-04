@@ -48,10 +48,18 @@ def contact(request):
 
 def search(request):
     """
-    
+    Search function it will return search page with matched query.
     """
     query = request.GET["query"]
-    allposts = Post.objects.filter(title__icontains=query)
-    params = {"allposts": allposts}
+    if len(query)>50:
+        allposts = Post.objects.none()
+    else:
+        allpostsTitle = Post.objects.filter(title__icontains=query)
+        allpostsAuthor = Post.objects.filter(author__icontains=query)
+        allpostsContent = Post.objects.filter(content__icontains=query)
+        allposts = allpostsTitle.union(allpostsContent, allpostsAuthor)
+    if allposts.count()==0:
+        messages.warning(request, "No Search Results Found, Please Refine your Query")
+    params = {"allposts": allposts, "query":query}
     # return HttpResponse("This is search")
     return render(request, "home/search.html", params)

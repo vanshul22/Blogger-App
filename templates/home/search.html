@@ -7,6 +7,17 @@
 {% block body %}
 <div class="container my-3">
     <h2>Search Results</h2>
+    {% if allposts|length < 1 %}
+    <p>No Search Results</p>
+    Your Search Query : <b>{{query}}</b> did not match any documents. <br>
+    Suggestions :
+    <ul>
+    <li>Make Sure That all Words are Spelled Correctly.</li>
+    <li>Try More general KeyWords</li>
+    <li>Try Fewer keyWords</li>
+    <li>Try Different KeyWords</li>
+    </ul>
+    {% endif %}
     
     {% for post in allposts %}
     <div
