@@ -4,4 +4,14 @@
 
 {% block body %}
 
+<div class="container my-3">
+    <div class="blog-post">
+        <h2 class="blog-post-title">{{ post.title }}</h2>
+        <p class="blog-post-meta">Article By <a href="#">{{ post.author }}  </a>, {{ post.timeStamp }}</p>
+        <hr>
+        <p>{{ post.content }}</p>
+        <hr>
+    </div>
+</div>
+
 {% endblock body %}
