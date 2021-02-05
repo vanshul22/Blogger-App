@@ -79,6 +79,21 @@ def handlesignup(request):
         password2 = request.POST.get("password2")
 
         # Checking For Error Inputs
+        # Username should be under 10 characters
+        if len(username) > 10:
+            messages.error(request, "Username Must be Minimum of 10 characters")    
+            return redirect("home")
+
+        # Username Should be mixed of Albhabet or Numeric 
+        if not username.isalnum():
+            messages.error(request, "Username Must be mixed of Alphabet and Numeric") 
+            return redirect("home")
+            
+        # Passwords matching
+        if password1 != password2:
+            messages.error(request, "Password Doesn't Match") 
+            return redirect("home")
+
 
         # Creating User
         myuser = User.objects.create_user(username, email, password1)
