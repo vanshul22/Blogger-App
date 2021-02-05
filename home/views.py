@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from home.models import Contact
 # Importing django message module
 from django.contrib import messages
 # Taking all post from this Post 
 from blog.models import Post
+# Taking User to create User
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -63,3 +65,30 @@ def search(request):
     params = {"allposts": allposts, "query":query}
     # return HttpResponse("This is search")
     return render(request, "home/search.html", params)
+
+
+def handlesignup(request):
+    if request.method == "POST":
+        pass
+        # Getting the Post Method
+        fname = request.POST.get("fname")
+        lname = request.POST.get("lname")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        # Checking For Error Inputs
+
+        # Creating User
+        myuser = User.objects.create_user(username, email, password1)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.save()
+        messages.success(request, "Your Blogger Account Has Been SuccessFully Created")
+        return redirect("home")
+
+
+
+    else:
+        HttpResponse("404 Not Found")
