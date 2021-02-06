@@ -121,17 +121,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/" method="">
+                    <form action="/login" method="post">
                     {% csrf_token %}
                         <div class="mb-3">
-                            <label for="username" class="form-label">User Name</label>
-                            <input type="text" name="username" class="form-control" id="username" required>
+                            <label for="loginusername" class="form-label">User Name</label>
+                            <input type="text" name="loginusername" class="form-control" id="loginusername" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
+                            <label for="loginpassword" class="form-label">Password</label>
+                            <input type="password" name="loginpassword" class="form-control" id="loginpassword" required>
                         </div>
-
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Sign In</button>
                         </div>

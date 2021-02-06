@@ -7,6 +7,9 @@ from django.contrib import messages
 from blog.models import Post
 # Taking User to create User
 from django.contrib.auth.models import User
+# Authenticate User is verified or not
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -63,13 +66,12 @@ def search(request):
     if allposts.count()==0:
         messages.warning(request, "No Search Results Found, Please Refine your Query")
     params = {"allposts": allposts, "query":query}
-    # return HttpResponse("This is search")
+    # return HttpResponse("Search")
     return render(request, "home/search.html", params)
 
 
 def handlesignup(request):
     if request.method == "POST":
-        pass
         # Getting the Post Method
         fname = request.POST.get("fname")
         lname = request.POST.get("lname")
@@ -89,21 +91,53 @@ def handlesignup(request):
             messages.error(request, "Username Must be mixed of Alphabet and Numeric") 
             return redirect("home")
             
-        # Passwords matching
+        # If Passwords does not matching then show error message in home screen
         if password1 != password2:
             messages.error(request, "Password Doesn't Match") 
             return redirect("home")
 
-
         # Creating User
         myuser = User.objects.create_user(username, email, password1)
+        # Taking User first and last name
         myuser.first_name = fname
         myuser.last_name = lname
+        # Saving in data base
         myuser.save()
+        # Show user successfull message
         messages.success(request, "Your Blogger Account Has Been SuccessFully Created")
+        # Goto home page after login
         return redirect("home")
 
+    else:
+        # If anybody comes from URL then show this to user.
+        HttpResponse("404 Not Found")
 
-
+# Handling LOGIN
+def handlelogin(request):
+    """
+    Function For Login Session
+    """
+    if request.method == "POST":
+        # Getting the Post Parametres
+        loginusername = request.POST.get("loginusername")
+        loginpassword = request.POST.get("loginpassword")
+        # Checking user is exist or not for login
+        user = authenticate(username=loginusername, password=loginpassword)
+        if user is not None:
+            login(request, user)
+            messages.success(request, f"Successfully Logged-IN !!! {loginusername}")
+            return redirect("home")
+        else:
+            messages.error(request, "Check Your Username and Password\n Please try Again...")
+            return redirect("home")
     else:
         HttpResponse("404 Not Found")
+
+# Handling LOGOUT
+def handlelogout(request):
+    """
+    Function For LogOut Session
+    """
+    logout(request)
+    messages.success(request, f" Successfully LogOut !!! ")
+    return redirect("home")
