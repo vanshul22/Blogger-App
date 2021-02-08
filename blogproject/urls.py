@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# To change our Django Administration in Admin Page
+admin.site.site_header = "Blogger Administration"
+# To change our Django site Admin in Admin login Page or where favicon located.
+admin.site.site_title = "Blogger Admin Panel"
+# To change our site Administration in Admin Page
+admin.site.index_title = "Welcome to Blogger Admin Panel"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Added home app url here if blank is there then goto home app.
