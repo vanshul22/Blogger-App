@@ -12,7 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
-
+""" HTML Pages """
+# Handling Home Page Here
 def home(request):
     """
     docstring
@@ -20,7 +21,7 @@ def home(request):
     # return HttpResponse("this is home of home")
     return render(request, "home/index.html")
 
-
+# Handle About Page Here
 def about(request):
     """
     docstring
@@ -28,8 +29,7 @@ def about(request):
     # return HttpResponse("This is about of home")
     return render(request, "home/about.html")
 
-
-
+# Handle Contact Page Here
 def contact(request):
     """
     Taking Input From Contact.html page and save these fields in their particular variables and also validate form.
@@ -51,6 +51,7 @@ def contact(request):
     # return HttpResponse("This is contact of home")
     return render(request, "home/contact.html")
 
+# Handle Search Form and Page Here
 def search(request):
     """
     Search function it will return search page with matched query.
@@ -69,7 +70,8 @@ def search(request):
     # return HttpResponse("Search")
     return render(request, "home/search.html", params)
 
-
+""" Authentication APIs """
+# Handle SignUp Here
 def handlesignup(request):
     if request.method == "POST":
         # Getting the Post Method

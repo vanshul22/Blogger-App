@@ -18,6 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Added home app url here if blank is there then goto home app.
     path('', include("home.urls")),
+    # Added Blog app here if blog is there then goto blog app.
     path("blog/", include("blog.urls")),
 ]

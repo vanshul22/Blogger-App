@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from blog.models import Post
 # Create your views here.
 
+# Handling Blog Homes Here
 def bloghome(request):
     """
     docstring
@@ -14,7 +15,7 @@ def bloghome(request):
     # return HttpResponse("This is a blog home")
     return render(request, "blog/index.html", context)
 
-
+# Handling Blog Post Here
 def blogpost(request, slug):
     """
     docstring

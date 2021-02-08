@@ -7,6 +7,7 @@
 {% block body %}
 <div class="container my-3">
     <h3>Contact admin</h3>
+    <!-- Taking All inputs and send post request to /contact -->
     <form action="/contact" method="post">
         
         {% csrf_token %}

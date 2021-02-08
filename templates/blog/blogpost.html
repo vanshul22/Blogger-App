@@ -5,9 +5,10 @@
 {% block body %}
 
 <div class="container my-3">
+    <!-- Detailed Post Here-->
     <div class="blog-post">
         <h2 class="blog-post-title">{{ post.title }}</h2>
-        <p class="blog-post-meta">Article By <a href="#">{{ post.author }}  </a>, {{ post.timeStamp }}</p>
+        <p class="blog-post-meta">Article By <a href="#">{{ post.author }}</a>, <br> {{ post.timeStamp }}</p>
         <hr>
         <p>{{ post.content }}</p>
         <hr>

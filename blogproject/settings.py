@@ -15,7 +15,7 @@ from pathlib import Path
 # Importing Message Framework of Django
 from django.contrib.messages import constants as messages
 
-# Using Message FrameWork to Display Error as danger
+""" Using Message FrameWork to Display Error as danger tag. """
 MESSAGE_TAGS = {
     messages.ERROR : "danger"
 }
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Added home and Blog App here.
     "home.apps.HomeConfig",
     "blog.apps.BlogConfig",
 ]
@@ -64,6 +65,7 @@ ROOT_URLCONF = 'blogproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Added Templates folder here.
         'DIRS': ["templates"],
         'APP_DIRS': True,   
         'OPTIONS': {
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
